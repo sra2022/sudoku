@@ -1,0 +1,83 @@
+* {
+	margin:0;
+	padding:0;
+	text-align:center;
+	font-family:monospace;
+}
+body {
+	color:#dfdfdf;
+	background-color:#111;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	justify-content:space-between;
+}
+header,footer {
+	height:60px;
+	margin:20px;
+	width:100px;
+}
+a {
+	color:inherit;
+	text-decoration:none;
+	font-weight:bold;
+}
+#game-box {
+	width:321px;
+	height:321px;
+	display:flex;
+	flex-direction:row;
+	align-items:center;
+	justify-content:flex-start;
+	flex-flow:wrap;
+}
+.square {
+	width:105px;
+	height:105px;
+	border:solid #111 1px;
+	display:flex;
+	flex-direction:row;
+	align-items:center;
+	justify-content:flex-start;
+	flex-flow:wrap;
+}
+.square div,.square input {
+	display:flex;
+	align-items:center;
+	border:solid #ccc 1px;
+	justify-content:center;
+}
+.square input {
+	width:33px;
+	height:33px;
+	background-color:#252525;
+	color:#ccc;
+}
+.square input:focus {
+	background-color:#111;
+	outline:none;
+}
+.square div {
+	background-color:#888;
+	color:#111;
+	width:33px;
+	height:33px;
+}
+.button-holder {
+	margin-top:5px;
+	display:flex;
+	flex-direction:row;
+	align-items:center;
+	justify-content:center;
+}
+button {
+	margin:10px;
+	border:solid #ccc 1px;
+	border-radius:5px;
+	width:100px;
+	height:30px;
+}
+button:active
+{
+	background-color:#555;
+}
