@@ -1,21 +1,30 @@
-let fixed=[1,2,3,6,8,18,21,22,24,29,33,34,37,39,40,43,44,45,47,49,52,53,55,56,58,61,65,67,70,71,75,77,80,81];
-let fixed_values=[1,8,6,5,9,1,5,1,4,5,1,8,1,2,4,5,9,7,8,7,6,1,2,1,6,5,4,9,7,1,6,4,3,8];
+let game=0;
+const game1={
+	fixed:[1,2,3,6,8,18,21,22,24,29,33,34,37,39,40,43,44,45,47,49,52,53,55,56,58,61,65,67,70,71,75,77,80,81],
+	fixed_values:[1,8,6,5,9,1,5,1,4,5,1,8,1,2,4,5,9,7,8,7,6,1,2,1,6,5,4,9,7,1,6,4,3,8]
+};
+const game2={
+	fixed:[1,2,3,4,8,12,13,16,17,19,22,23,28,30,32,36,38,39,40,42,44,46,49,51,54,55,57,59,62,64,67,69,72,74,75,77,79,80],
+	fixed_values:[5,9,1,3,8,7,8,3,2,3,1,6,8,9,1,2,3,6,2,9,1,2,7,3,9,1,8,4,7,9,6,8,2,7,2,9,8,3]
+};
+let games=[game1,game2];
 
-function set_game()
+function set_game(game_number)
 {
-	for(let i=0;i<fixed.length;i++)
-		document.getElementById("cell"+fixed[i]).innerHTML=fixed_values[i];
-}
-
-function draw_outline()
-{
-	const container=document.getElementById("game-box");
+	game=game_number;
+	for(let i=1;i<=8;i++)
+	{
+		if(game_number==i)
+			document.getElementById("panel"+i).style.backgroundColor="#93f";
+		else
+			document.getElementById("panel"+i).style.backgroundColor="#222";
+	}
+	unvalidate();
 	for(let i=0;i<9;i++)
 	{
-		const box=document.createElement("div");
-		box.setAttribute("class","square");
-		box.setAttribute("id","square"+i);
-		container.appendChild(box);
+		const box=document.getElementById("square"+i);
+		while(box.hasChildNodes())
+			box.removeChild(box.firstChild);
 	}
 	for(let i=0;i<9;i++)
 	{
@@ -23,7 +32,7 @@ function draw_outline()
 		let cell_number=1;
 		for(let j=1;j<=9;j++)
 		{
-			if(fixed.includes(i*9+j))
+			if(games[game_number-1].fixed.includes(i*9+j))
 			{
 				const cell=document.createElement("div");
 				cell.setAttribute("class","cell");
@@ -42,13 +51,51 @@ function draw_outline()
 			}
 		}
 	}
+	for(let i=0;i<games[game_number-1].fixed.length;i++)
+		document.getElementById("cell"+games[game_number-1].fixed[i]).innerHTML=games[game_number-1].fixed_values[i];
+	document.getElementById("left").setAttribute("class","left2");
+	document.getElementById("right").style.display="block";
 }
 
-function load_game()
+function draw_outline()
 {
-	draw_outline();
-	set_game();
+	const container=document.getElementById("game-box");
+	for(let i=0;i<9;i++)
+	{
+		const box=document.createElement("div");
+		box.setAttribute("class","square");
+		box.setAttribute("id","square"+i);
+		container.appendChild(box);
+	}
+	for(let i=0;i<9;i++)
+	{
+		const box=document.getElementById("square"+i);
+		let cell_number=1;
+		for(let j=1;j<=9;j++)
+		{
+				const cell=document.createElement("div");
+				cell.setAttribute("class","cell");
+				cell.setAttribute("id","cell"+(i*9+j));
+				box.appendChild(cell);
+		}
+	}
 }
+
+function load_screen()
+{
+	const left=document.getElementById("left");
+	for(let i=1;i<=8;i++)
+	{
+		const element=document.createElement("div");
+		element.setAttribute("class","selector");
+		element.innerHTML="Game "+i;
+		element.setAttribute("id","panel"+i);
+		element.setAttribute("onclick","set_game("+i+")");
+		left.appendChild(element);
+	}
+	draw_outline();
+}
+
 
 function validate()
 {
@@ -60,7 +107,7 @@ function validate()
 		for(let j=1;j<=9;j++)
 		{
 			let val;
-			if(fixed.includes(i*9+j))
+			if(games[game-1].fixed.includes(i*9+j))
 				val=parseInt(document.getElementById("cell"+(i*9+j)).innerHTML);
 			else
 				val=parseInt(document.getElementById("cell"+(i*9+j)).value);

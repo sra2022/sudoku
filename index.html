@@ -6,15 +6,22 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1"/>
 	<link rel="stylesheet" href="style.css"/>
 </head>
-<body onload="load_game()">
+<body onload="load_screen()">
 	<header>
+		<a class="home" href="/">Home</a>
 		<h1>Sudoku</h1>
 	</header>
-	<div id="game-box" onclick="unvalidate()">
-	<noscript>Requires javascript</noscript>
-	</div>
-	<div class="button-holder">
-		<button onclick="validate()">Evaluate</button>
+	<div class="main">
+		<div class="left" id="left">
+		</div>
+		<div id="right">
+			<div id="game-box" onclick="unvalidate()">
+				<noscript>Requires javascript</noscript>
+			</div>
+			<div id="button-holder" class="button-holder">
+				<button onclick="validate()">Evaluate</button>
+			</div>
+		</div>
 	</div>
 	<footer>
 		<a href="https://github.com/sra2022" target="_blank">SRA2022</a>
