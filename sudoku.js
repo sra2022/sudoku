@@ -39,7 +39,7 @@ function set_game(game_number)
 	for(let i=1;i<=8;i++)
 	{
 		if(game_number==i)
-			document.getElementById("panel"+i).style.backgroundColor="#93f";
+			document.getElementById("panel"+i).style.backgroundColor="#83f";
 		else
 			document.getElementById("panel"+i).style.backgroundColor="#222";
 	}
