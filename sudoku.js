@@ -1,44 +1,48 @@
 let game=0;
 const game1={
 	fixed:[1,2,3,6,8,18,21,22,24,29,33,34,37,39,40,43,44,45,47,49,52,53,55,56,58,61,65,67,70,71,75,77,80,81],
-	fixed_values:[1,8,6,5,9,1,5,1,4,5,1,8,1,2,4,5,9,7,8,7,6,1,2,1,6,5,4,9,7,1,6,4,3,8]
+	fixedValues:[1,8,6,5,9,1,5,1,4,5,1,8,1,2,4,5,9,7,8,7,6,1,2,1,6,5,4,9,7,1,6,4,3,8]
 };
 const game2={
 	fixed:[1,2,3,4,8,12,13,16,17,19,22,23,28,30,32,36,38,39,40,42,44,46,49,51,54,55,57,59,62,64,67,69,72,74,75,77,79,80],
-	fixed_values:[5,9,1,3,8,7,8,3,2,3,1,6,8,9,1,2,3,6,2,9,1,2,7,3,9,1,8,4,7,9,6,8,2,7,2,9,8,3]
+	fixedValues:[5,9,1,3,8,7,8,3,2,3,1,6,8,9,1,2,3,6,2,9,1,2,7,3,9,1,8,4,7,9,6,8,2,7,2,9,8,3]
 };
 const game3={
 	fixed:[2,5,7,9,12,13,14,15,20,24,25,30,31,32,34,35,37,41,45,47,48,50,51,52,57,58,62,68,69,70,71,73,75,77,80],
-	fixed_values:[8,2,9,4,9,6,7,4,3,8,2,6,1,3,8,9,8,6,1,1,2,5,4,7,9,6,1,7,2,6,8,1,6,4,2]
+	fixedValues:[8,2,9,4,9,6,7,4,3,8,2,6,1,3,8,9,8,6,1,1,2,5,4,7,9,6,1,7,2,6,8,1,6,4,2]
 };
 const game4={
 	fixed:[2,4,6,7,11,16,17,20,22,24,27,28,29,30,34,36,46,48,52,53,54,55,58,60,62,65,66,71,75,76,78,80],
-	fixed_values:[8,3,5,4,5,6,3,2,1,6,7,5,6,1,9,8,9,4,5,3,1,8,2,7,1,1,7,8,5,3,8,4]
+	fixedValues:[8,3,5,4,5,6,3,2,1,6,7,5,6,1,9,8,9,4,5,3,1,8,2,7,1,1,7,8,5,3,8,4]
 };
 const game5={
 	fixed:[1,2,4,7,8,9,12,13,17,24,29,31,32,33,36,37,44,45,46,48,53,57,58,59,64,66,71,74,76,78,79,80],
-	fixed_values:[4,2,7,1,3,6,1,3,8,6,8,2,9,1,7,6,4,5,9,7,2,2,6,7,7,9,5,6,4,3,7,8]
+	fixedValues:[4,2,7,1,3,6,1,3,8,6,8,2,9,1,7,6,4,5,9,7,2,2,6,7,7,9,5,6,4,3,7,8]
 };
 const game6={
 	fixed:[1,8,9,15,17,18,20,24,28,29,33,42,43,46,47,53,60,61,64,65,69,73,75,80],
-	fixed_values:[4,2,6,2,9,3,1,4,8,4,1,8,6,5,6,3,9,5,8,3,1,6,7,8]
+	fixedValues:[4,2,6,2,9,3,1,4,8,4,1,8,6,5,6,3,9,5,8,3,1,6,7,8]
 };
 const game7={
 	fixed:[3,5,8,9,13,14,16,20,25,32,40,41,42,47,48,56,59,63,67,70,71,72,73,77,78,79,80],
-	fixed_values:[2,1,8,5,8,3,1,8,3,3,9,6,1,9,8,2,6,1,7,6,4,5,1,5,9,2,3]
+	fixedValues:[2,1,8,5,8,3,1,8,3,3,9,6,1,9,8,2,6,1,7,6,4,5,1,5,9,2,3]
 };
 const game8={
 	fixed:[3,4,5,7,14,15,16,17,18,21,24,25,28,29,30,31,33,38,39,42,44,47,50,51,53,54,55,67,68,70,72,73,77,78,79,80,81],
-	fixed_values:[6,1,2,4,9,8,7,1,2,1,5,9,2,4,1,8,5,7,6,1,8,9,6,4,2,7,7,8,4,1,9,8,5,9,7,4,2]
+	fixedValues:[6,1,2,4,9,8,7,1,2,1,5,9,2,4,1,8,5,7,6,1,8,9,6,4,2,7,7,8,4,1,9,8,5,9,7,4,2]
 };
 let games=[game1,game2,game3,game4,game5,game6,game7,game8];
 
-function set_game(game_number)
+window.onload=() => {
+	loadScreen();
+}
+
+function setGame(gameNumber)
 {
-	game=game_number;
+	game=gameNumber;
 	for(let i=1;i<=8;i++)
 	{
-		if(game_number==i)
+		if(gameNumber==i)
 			document.getElementById("panel"+i).style.backgroundColor="#83f";
 		else
 			document.getElementById("panel"+i).style.backgroundColor="#222";
@@ -53,10 +57,10 @@ function set_game(game_number)
 	for(let i=0;i<9;i++)
 	{
 		const box=document.getElementById("square"+i);
-		let cell_number=1;
+		let cellnumber=1;
 		for(let j=1;j<=9;j++)
 		{
-			if(games[game_number-1].fixed.includes(i*9+j))
+			if(games[gameNumber-1].fixed.includes(i*9+j))
 			{
 				const cell=document.createElement("div");
 				cell.setAttribute("class","cell");
@@ -75,13 +79,13 @@ function set_game(game_number)
 			}
 		}
 	}
-	for(let i=0;i<games[game_number-1].fixed.length;i++)
-		document.getElementById("cell"+games[game_number-1].fixed[i]).innerHTML=games[game_number-1].fixed_values[i];
+	for(let i=0;i<games[gameNumber-1].fixed.length;i++)
+		document.getElementById("cell"+games[gameNumber-1].fixed[i]).innerHTML=games[gameNumber-1].fixedValues[i];
 	document.getElementById("left").setAttribute("class","left2");
-	document.getElementById("right").style.display="block";
+	document.getElementById("right").setAttribute("class","right2");
 }
 
-function draw_outline()
+function drawOutline()
 {
 	const container=document.getElementById("game-box");
 	for(let i=0;i<9;i++)
@@ -94,7 +98,7 @@ function draw_outline()
 	for(let i=0;i<9;i++)
 	{
 		const box=document.getElementById("square"+i);
-		let cell_number=1;
+		let cellNumber=1;
 		for(let j=1;j<=9;j++)
 		{
 				const cell=document.createElement("div");
@@ -105,7 +109,7 @@ function draw_outline()
 	}
 }
 
-function load_screen()
+function loadScreen()
 {
 	const left=document.getElementById("left");
 	for(let i=1;i<=8;i++)
@@ -114,12 +118,11 @@ function load_screen()
 		element.setAttribute("class","selector");
 		element.innerHTML="Game "+i;
 		element.setAttribute("id","panel"+i);
-		element.setAttribute("onclick","set_game("+i+")");
+		element.setAttribute("onclick","setGame("+i+")");
 		left.appendChild(element);
 	}
-	draw_outline();
+	drawOutline();
 }
-
 
 function validate()
 {
@@ -199,12 +202,18 @@ function validate()
 			solved=false;
 	}
 	if(solved)
-		document.getElementById("game-box").style.outline="solid green 2px";
+		document.getElementById("game-box").style.outline="solid green 3px";
 	else	
-		document.getElementById("game-box").style.outline="solid red 2px";
+		document.getElementById("game-box").style.outline="solid red 3px";
 }
 
 function unvalidate()
 {
-	document.getElementById("game-box").style.outline="solid #111 2px";
+	document.getElementById("game-box").style.outline="solid #111 3px";
+}
+
+function goHome() {
+	document.getElementById("right").setAttribute("class","right");
+	document.getElementById("left").setAttribute("class","left");
+	for(let i=1;i<=8;i++) document.getElementById("panel"+i).style.backgroundColor="#222";
 }

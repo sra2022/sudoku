@@ -7,21 +7,20 @@
 	<link rel="stylesheet" href="style.css"/>
 	<link rel="icon" href="assets/favicon.svg"/>
 </head>
-<body onload="load_screen()">
+<body>
 	<header>
-		<a href="/sudoku">
-			<img src="assets/favicon.svg" alt="favicon" id="favicon"/>
-			<h1>Sudoku</h1>
-		</a>
+		<img src="assets/favicon.svg" alt="favicon" id="favicon"/>
+		<h1>Sudoku</h1>
 	</header>
 	<div class="main">
 		<div class="left" id="left">
 		</div>
-		<div id="right">
+		<div id="right" class="right">
 			<noscript>Requires javascript</noscript>
 			<div id="game-box" onclick="unvalidate()">
 			</div>
 			<div id="button-holder" class="button-holder">
+				<button onclick="goHome()" id="homeButton">Home</button>
 				<button onclick="validate()">Evaluate</button>
 			</div>
 		</div>
